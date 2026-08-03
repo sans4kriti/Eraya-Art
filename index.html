@@ -717,6 +717,256 @@
       body { cursor: auto; }
       .cursor-dot, .cursor-ring { display: none; }
     }
+
+    /* ══ ENQUIRY MODAL ══════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(26,20,16,0.72);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--white);
+      width: 100%;
+      max-width: 660px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(30px) scale(0.97);
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    /* Scrollbar */
+    .modal::-webkit-scrollbar { width: 4px; }
+    .modal::-webkit-scrollbar-track { background: var(--cream); }
+    .modal::-webkit-scrollbar-thumb { background: rgba(181,34,24,0.3); }
+
+    .modal-header {
+      background: var(--crimson);
+      padding: 2rem 2.5rem 1.8rem;
+      position: relative;
+    }
+    .modal-header .m-eyebrow {
+      font-size: 0.55rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(242,237,228,0.6);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .modal-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--cream);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .modal-header .m-painting {
+      display: inline-block;
+      margin-top: 0.8rem;
+      padding: 0.3rem 0.9rem;
+      background: rgba(242,237,228,0.15);
+      border: 1px solid rgba(242,237,228,0.3);
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(242,237,228,0.85);
+      font-family: 'Montserrat', sans-serif;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1.2rem; right: 1.5rem;
+      background: none; border: none;
+      color: rgba(242,237,228,0.6);
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 0.3rem 0.5rem;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+    .modal-close:hover { color: var(--cream); }
+
+    .modal-body { padding: 2rem 2.5rem 2.5rem; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+
+    .form-group label {
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      font-family: 'Montserrat', sans-serif;
+    }
+    .form-group label .req {
+      color: var(--crimson);
+      margin-left: 2px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--black);
+      background: var(--cream);
+      border: 1px solid rgba(181,34,24,0.18);
+      padding: 0.7rem 0.9rem;
+      outline: none;
+      transition: border-color 0.25s, background 0.25s;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--crimson);
+      background: var(--white);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(122,107,93,0.5);
+      font-style: italic;
+    }
+    .form-group textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+
+    /* Select arrow */
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: '▾';
+      position: absolute;
+      right: 0.9rem; top: 50%;
+      transform: translateY(-50%);
+      color: var(--crimson);
+      font-size: 0.75rem;
+      pointer-events: none;
+    }
+    .select-wrap select { padding-right: 2rem; }
+
+    .form-divider {
+      height: 1px;
+      background: rgba(181,34,24,0.1);
+      margin: 1.2rem 0;
+    }
+
+    .form-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.88rem;
+      color: var(--warm-mid);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--crimson);
+      color: var(--cream);
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .submit-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.12);
+      transform: translateX(-110%) skewX(-15deg);
+      transition: transform 0.4s ease;
+    }
+    .submit-btn:hover::before { transform: translateX(110%) skewX(-15deg); }
+    .submit-btn:hover { background: var(--crimson-dk); }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* Success state */
+    .modal-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2.5rem;
+      gap: 1.2rem;
+    }
+    .modal-success.show { display: flex; }
+    .modal-body.hidden { display: none; }
+
+    .success-icon {
+      width: 64px; height: 64px;
+      border: 2px solid var(--crimson);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      color: var(--crimson);
+    }
+    .modal-success h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--black);
+    }
+    .modal-success p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--warm-mid);
+      font-style: italic;
+      line-height: 1.8;
+      max-width: 400px;
+    }
+    .modal-success .success-script {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: var(--crimson);
+    }
+
+    /* Error message */
+    .form-error {
+      font-size: 0.62rem;
+      color: var(--crimson);
+      letter-spacing: 0.1em;
+      margin-top: 0.8rem;
+      display: none;
+    }
+    .form-error.show { display: block; }
+
+    @media (max-width: 600px) {
+      .modal-header { padding: 1.5rem 1.5rem 1.4rem; }
+      .modal-body { padding: 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -787,7 +1037,7 @@
 
     <div class="hero-cta-wrap">
       <a href="#ode" class="btn-crimson">Explore the Works</a>
-      <a href="#contact" class="btn-outline">Enquire</a>
+      <button class="btn-outline" onclick="openEnquiry('General Enquiry')" style="cursor:pointer;">Enquire</button>
     </div>
   </div>
 
@@ -867,10 +1117,7 @@
       <div class="ode-tag">Acrylic on Canvas · Framed · One of One</div>
       <div class="ode-footer">
         <div class="big-price"><sup>€</sup>300</div>
-        <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
-          <a href="mailto:sx411sanskriti@gmail.com?subject=Enquiry: An Ode" class="btn-crimson">Email to Enquire</a>
-          <a href="https://wa.me/919667244756?text=Hello! I'm interested in 'An Ode' (€300)" class="btn-outline-cream" target="_blank">WhatsApp</a>
-        </div>
+        <button class="btn-crimson" onclick="openEnquiry('An Ode — €300')" style="cursor:pointer;">Enquire About This Work</button>
       </div>
     </div>
   </div>
@@ -910,7 +1157,7 @@
         </p>
         <div class="art-footer">
           <div class="art-price"><sup>€</sup>175</div>
-          <a href="https://wa.me/919667244756?text=Hello! I'm interested in 'The Colosseum' (€175)" class="btn-outline-crimson" target="_blank">Enquire</a>
+          <button class="btn-outline-crimson" onclick="openEnquiry('The Colosseum — €175')" style="cursor:pointer;">Enquire</button>
         </div>
       </div>
     </div>
@@ -933,7 +1180,7 @@
         </p>
         <div class="art-footer">
           <div class="art-price"><sup>€</sup>250</div>
-          <a href="https://wa.me/919667244756?text=Hello! I'm interested in 'Santa Maria della Salute' (€250)" class="btn-outline-crimson" target="_blank">Enquire</a>
+          <button class="btn-outline-crimson" onclick="openEnquiry('Santa Maria della Salute — €250')" style="cursor:pointer;">Enquire</button>
         </div>
       </div>
     </div>
@@ -1007,9 +1254,14 @@
       No shopping carts — only a direct conversation between you and the artist.
     </p>
     <div class="contact-cards">
+      <button class="contact-card" onclick="openEnquiry('General Enquiry')" style="cursor:pointer; border:none;">
+        <div class="cc-icon">✦</div>
+        <span class="cc-type">Begin an Enquiry</span>
+        <span class="cc-val">Tell us about your interest</span>
+      </button>
       <a href="mailto:sx411sanskriti@gmail.com" class="contact-card">
         <div class="cc-icon">✉</div>
-        <span class="cc-type">Write to us</span>
+        <span class="cc-type">Direct Email</span>
         <span class="cc-val">sx411sanskriti@gmail.com</span>
       </a>
       <a href="https://wa.me/919667244756" class="contact-card" target="_blank" rel="noopener">
@@ -1020,6 +1272,129 @@
     </div>
   </div>
 </section>
+
+<!-- ══ ENQUIRY MODAL ══════════════════════════════════════════════ -->
+<div class="modal-overlay" id="enquiryOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="enquiryModal">
+
+    <div class="modal-header">
+      <span class="m-eyebrow">eraya — Fortune's Favorite</span>
+      <h2>Express Your Interest</h2>
+      <div class="m-painting" id="modalPainting">—</div>
+      <button class="modal-close" onclick="closeEnquiry()" aria-label="Close">✕</button>
+    </div>
+
+    <div class="modal-body" id="modalBody">
+      <p class="form-note">
+        Tell us a little about yourself and we'll be in touch personally within 24 hours.
+        Every conversation begins with a name.
+      </p>
+
+      <form id="enquiryForm" onsubmit="submitEnquiry(event)">
+        <input type="hidden" id="paintingField" name="painting" value="" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name <span class="req">*</span></label>
+            <input type="text" name="first_name" id="firstName" placeholder="Your first name" required />
+          </div>
+          <div class="form-group">
+            <label>Last Name <span class="req">*</span></label>
+            <input type="text" name="last_name" id="lastName" placeholder="Your last name" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" name="email" id="emailField" placeholder="you@example.com" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>WhatsApp / Phone <span class="req">*</span></label>
+            <input type="tel" name="phone" id="phoneField" placeholder="+44 7700 000000" required />
+          </div>
+          <div class="form-group">
+            <label>Country <span class="req">*</span></label>
+            <input type="text" name="country" id="countryField" placeholder="e.g. France" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" name="city" id="cityField" placeholder="e.g. Paris" />
+          </div>
+          <div class="form-group">
+            <label>Preferred Contact</label>
+            <div class="select-wrap">
+              <select name="preferred_contact" id="preferredContact">
+                <option value="Email">Email</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Either">Either is fine</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div class="form-group">
+          <label>How did you discover eraya?</label>
+          <div class="select-wrap">
+            <select name="source" id="sourceField">
+              <option value="">— Select —</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Google Search">Google Search</option>
+              <option value="Friend / Word of mouth">Friend / Word of mouth</option>
+              <option value="Pinterest">Pinterest</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Your Budget Comfort</label>
+          <div class="select-wrap">
+            <select name="budget" id="budgetField">
+              <option value="">— Select —</option>
+              <option value="Under €200">Under €200</option>
+              <option value="€200–€300">€200–€300</option>
+              <option value="€300+">€300+</option>
+              <option value="Open to discuss">Open to discuss</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Message or Special Requests</label>
+          <textarea name="message" id="messageField" placeholder="Tell us anything — where this painting will live, what it means to you, any questions…"></textarea>
+        </div>
+
+        <p class="form-error" id="formError">Something went wrong. Please try again or email us directly.</p>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          Send Enquiry
+        </button>
+      </form>
+    </div>
+
+    <!-- Success screen -->
+    <div class="modal-success" id="modalSuccess">
+      <div class="success-icon">✓</div>
+      <span class="success-script">thank you</span>
+      <h3>Your enquiry is received.</h3>
+      <p>
+        We'll be in touch personally within 24 hours.
+        In the meantime, the painting is thinking of you.
+      </p>
+      <button class="btn-crimson" onclick="closeEnquiry()" style="margin-top:1rem; border:none; cursor:pointer;">
+        Close
+      </button>
+    </div>
+
+  </div>
+</div>
 
 <!-- ══ FOOTER ═════════════════════════════════════════════════════ -->
 <footer>
@@ -1166,6 +1541,106 @@ window.addEventListener('scroll', () => {
     logoWrap.style.transform = `translateY(${y * 0.18}px)`;
   }
 });
+
+/* ══ SUPABASE CONFIG ════════════════════════════════════════════
+   ★ Replace these two values after you set up Supabase (see guide below)
+   ════════════════════════════════════════════════════════════════ */
+const SUPABASE_URL      = 'https://bphwttceqtpkbnnmqcgc.supabase.co';      // e.g. https://xyzabc.supabase.co
+const SUPABASE_ANON_KEY = 'sb_publishable_8_hADRtvLB53qitaiGehOA_XJ4cF1hx'; // your public anon key
+
+/* ── Modal open / close ─────────────────────────────────────────── */
+function openEnquiry(paintingName) {
+  document.getElementById('modalPainting').textContent = paintingName;
+  document.getElementById('paintingField').value = paintingName;
+  document.getElementById('enquiryOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // reset form state
+  document.getElementById('modalBody').classList.remove('hidden');
+  document.getElementById('modalSuccess').classList.remove('show');
+  document.getElementById('formError').classList.remove('show');
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('submitBtn').textContent = 'Send Enquiry';
+}
+
+function closeEnquiry() {
+  document.getElementById('enquiryOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('enquiryOverlay')) closeEnquiry();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeEnquiry();
+});
+
+/* ── Form submission → Supabase ─────────────────────────────────── */
+async function submitEnquiry(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  document.getElementById('formError').classList.remove('show');
+
+  const payload = {
+    painting:          document.getElementById('paintingField').value,
+    first_name:        document.getElementById('firstName').value.trim(),
+    last_name:         document.getElementById('lastName').value.trim(),
+    email:             document.getElementById('emailField').value.trim(),
+    phone:             document.getElementById('phoneField').value.trim(),
+    country:           document.getElementById('countryField').value.trim(),
+    city:              document.getElementById('cityField').value.trim(),
+    preferred_contact: document.getElementById('preferredContact').value,
+    source:            document.getElementById('sourceField').value,
+    budget:            document.getElementById('budgetField').value,
+    message:           document.getElementById('messageField').value.trim(),
+  };
+
+  /* ── If Supabase isn't configured yet, still show success so
+         the page works locally while you set things up ── */
+  if (SUPABASE_URL === 'YOUR_SUPABASE_URL') {
+    console.warn('Supabase not configured — showing success in demo mode.');
+    showSuccess();
+    return;
+  }
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/enquiries`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey':        SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Prefer':        'return=minimal',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (res.ok || res.status === 201) {
+      showSuccess();
+    } else {
+      const err = await res.text();
+      console.error('Supabase error:', err);
+      showError();
+    }
+  } catch (err) {
+    console.error('Network error:', err);
+    showError();
+  }
+}
+
+function showSuccess() {
+  document.getElementById('modalBody').classList.add('hidden');
+  document.getElementById('modalSuccess').classList.add('show');
+  document.getElementById('enquiryForm').reset();
+}
+
+function showError() {
+  document.getElementById('formError').classList.add('show');
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('submitBtn').textContent = 'Send Enquiry';
+}
 </script>
 
 </body>
