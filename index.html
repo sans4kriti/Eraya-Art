@@ -88,6 +88,7 @@
       width: auto;
       object-fit: contain;
       display: block;
+      mix-blend-mode: multiply;
     }
     .nav-logo-fallback {
       font-family: 'Great Vibes', cursive;
@@ -206,6 +207,7 @@
       width: 100%;
       height: auto;
       display: block;
+      mix-blend-mode: multiply; /* makes white background invisible */
     }
     /* Fallback font if image doesn't load */
     .hero-logo-font {
@@ -986,7 +988,7 @@
     <span class="sub">Fortune's Favorite</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#ode">Collections</a></li>
+    <li><a href="#blues">Collections</a></li>
     <li><a href="#contact">Enquire</a></li>
   </ul>
 </nav>
@@ -1034,7 +1036,7 @@
     </div>
 
     <div class="hero-cta-wrap">
-      <a href="#ode" class="btn-crimson">Explore the Works</a>
+      <a href="#blues" class="btn-crimson">Explore the Works</a>
       <button class="btn-outline" onclick="openEnquiry('General Enquiry')" style="cursor:pointer;">Enquire</button>
     </div>
   </div>
@@ -1075,47 +1077,6 @@
       <div class="brand-pillar stagger-3">
         <h4>Fortunate</h4>
         <p>To own a piece of eraya is to invite something rare and hand-made into your world</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ AN ODE ═════════════════════════════════════════════════════ -->
-<section class="ode-section" id="ode">
-  <div class="ode-inner">
-    <div class="reveal-left">
-      <div class="ode-img">
-        <img src="./images/an-ode.jpg" alt="An Ode — Ganesha with Lotus"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="ph" style="display:none;">
-          <div class="ph-txt" style="color:rgba(201,160,83,0.4);">images/an-ode.jpg</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ode-text reveal-right">
-      <span class="sec-label">Available · Singular Work</span>
-      <h2 class="sec-title">An Ode</h2>
-      <div class="sec-rule"></div>
-      <p class="sec-body">
-        In Hindu tradition, no new venture begins without first offering an ode
-        to Lord Ganesha — remover of obstacles, keeper of new beginnings.
-        This painting is exactly that.
-      </p>
-      <br/>
-      <p class="sec-body">
-        Amber and gold on the deepest black, Ganesha meditates in serenity.
-        At his side, a white lotus — symbol of purity, of fortune, and of the
-        threshold between the world and the sanctuary of home.
-      </p>
-      <br/>
-      <p class="sec-body">
-        This is eraya's first work — the painting that opened every door that followed.
-      </p>
-      <div class="ode-tag">Acrylic on Canvas · Framed · One of One</div>
-      <div class="ode-footer">
-        <div class="big-price"><sup>€</sup>300</div>
-        <button class="btn-crimson" onclick="openEnquiry('An Ode — €300')" style="cursor:pointer;">Enquire About This Work</button>
       </div>
     </div>
   </div>
@@ -1235,6 +1196,47 @@
           the people who make a place feel like home.
         </p>
         <div class="sold-price">Sold · Private Collection</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ AN ODE ═════════════════════════════════════════════════════ -->
+<section class="ode-section" id="ode">
+  <div class="ode-inner">
+    <div class="reveal-left">
+      <div class="ode-img">
+        <img src="./images/an-ode.jpg" alt="An Ode — Ganesha with Lotus"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="ph" style="display:none;">
+          <div class="ph-txt" style="color:rgba(201,160,83,0.4);">images/an-ode.jpg</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ode-text reveal-right">
+      <span class="sec-label">Available · Singular Work</span>
+      <h2 class="sec-title">An Ode</h2>
+      <div class="sec-rule"></div>
+      <p class="sec-body">
+        In Hindu tradition, no new venture begins without first offering an ode
+        to Lord Ganesha — remover of obstacles, keeper of new beginnings.
+        This painting is exactly that.
+      </p>
+      <br/>
+      <p class="sec-body">
+        Amber and gold on the deepest black, Ganesha meditates in serenity.
+        At his side, a white lotus — symbol of purity, of fortune, and of the
+        threshold between the world and the sanctuary of home.
+      </p>
+      <br/>
+      <p class="sec-body">
+        This is eraya's first work — the painting that opened every door that followed.
+      </p>
+      <div class="ode-tag">Acrylic on Canvas · Framed · One of One</div>
+      <div class="ode-footer">
+        <div class="big-price"><sup>€</sup>300</div>
+        <button class="btn-crimson" onclick="openEnquiry('An Ode — €300')" style="cursor:pointer;">Enquire About This Work</button>
       </div>
     </div>
   </div>
